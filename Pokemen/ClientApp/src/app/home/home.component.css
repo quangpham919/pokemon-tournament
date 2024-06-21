@@ -1,0 +1,24 @@
+.form-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.message {
+  margin-top: 12px;
+}
+
+.message-error {
+  color: #cc0000;
+}
+
+.poke-stat-tbl {
+  margin-top: 12px;
+  text-align: left
+}
+
+.poke-stat-tbl .header-cell, .poke-stat-tbl .data-cell {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+

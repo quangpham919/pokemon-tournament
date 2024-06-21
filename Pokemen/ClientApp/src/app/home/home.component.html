@@ -1,0 +1,53 @@
+<form class="form-container" [formGroup]="formGroup" (ngSubmit)="submitHandler()">
+    <div>
+        <label for="sortBy">Sort by: </label>
+        <select id="sortBy" typeof="text" [formControl]="formGroup.controls.sortBy">
+            <option value="" disabled selected>Select your option</option>
+            <option [value]="option.value" *ngFor="let option of sortByOptions">
+                {{ option.label }}
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label for="sortDirection">Sort direction: </label>
+        <select id="sortDirection" typeof="text" [formControl]="formGroup.controls.sortDirection">
+            <option value="" disabled selected>Select your option</option>
+            <option [value]="option.value" *ngFor="let option of sortDirectionOptions">
+                {{ option.label }}
+            </option>
+        </select>
+    </div>
+    <button type="submit">
+        Submit
+    </button>
+</form>
+
+<div class="message-error" *ngIf="errorMessage && !loading">
+    <p> {{ errorMessage }} </p>
+</div>
+
+<div class="message" *ngIf="!hasPokemons && !loading && !errorMessage">
+    <p> Select filters to start...</p>
+</div>
+
+<div class="message" *ngIf="loading">
+    <p> Loading...</p>
+</div>
+
+<table class="poke-stat-tbl" *ngIf ="hasPokemons && !loading">
+    <tr>
+        <th class="header-cell" *ngFor="let header of headers">
+            {{ header }}
+        </th>
+    </tr>
+    <tr *ngFor="let item of pokemons">
+        <td class="data-cell"> {{item.id}} </td>
+        <td class="data-cell"> {{item.name}} </td>
+        <td class="data-cell"> {{item.type}} </td>
+        <td class="data-cell"> {{item.wins}} </td>
+        <td class="data-cell"> {{item.loses}} </td>
+        <td class="data-cell"> {{item.ties}} </td>
+    </tr>
+
+</table>
